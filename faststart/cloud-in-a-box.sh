@@ -304,7 +304,7 @@ if [ "$?" == "0" ]; then
     echo ""
     echo "The presence of NetworkManager indicates that you have installed a Desktop environment."
     echo "Please run Faststart on a minimal OS without a Desktop environment installed."
-    curl --silent "https://www.eucalyptus.com/docs/faststart_errors.html?msg=DESKTOP_NOT_SUPPORTEDi&id=$uuid" >> /tmp/fsout.log
+    curl --silent "https://www.eucalyptus.com/docs/faststart_errors.html?msg=DESKTOP_NOT_SUPPORTED&id=$uuid" >> /tmp/fsout.log
     exit 12
 fi
 
@@ -706,7 +706,7 @@ echo "  tail -f $LOGFILE"
 
 if [ "$nc_install_only" == "0" ]; then
     echo ""
-    echo "Your  cloud-in-a-box should be installed in 15-20 minutes. Go have a cup of coffee!"
+    echo "Your cloud-in-a-box should be installed in 15-20 minutes. Go have a cup of coffee!"
     echo ""
 else
     echo ""
