@@ -109,8 +109,9 @@ function offer_support()
     else
        echo "You can ask the Eucalyptus community for assistance:"
        echo ""
-       echo " https://groups.google.com/a/eucalyptus.com/forum/#!forum/euca-users"
+       echo "     http://bit.ly/euca-users"
        echo "Or find us on IRC at irc.freenode.net, on the #eucalyptus channel."
+       echo "     http://bit.ly/euca-irc"
     fi 
 } 
 
@@ -342,7 +343,6 @@ if [ "$?" != "0" ]; then
         echo ""
         echo "Failed to install Chef. See $LOGFILE for details."
         curl --silent "https://www.eucalyptus.com/docs/faststart_errors.html?msg=CHEF_INSTALL_FAILED&id=$uuid" >> /tmp/fsout.log
-        offer_support "CHEF_INSTALL_FAILED"
         exit 22
     fi
 fi
