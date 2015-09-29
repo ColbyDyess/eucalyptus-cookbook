@@ -29,6 +29,7 @@ group "eucalyptus-status"
 
 source_directory = "#{node['eucalyptus']["home-directory"]}/source/#{node['eucalyptus']['source-branch']}"
 home_directory =  node['eucalyptus']["home-directory"]
+cloud_libs_branch = node['eucalyptus']['cloud-libs-branch']
 
 directory source_directory do
   recursive true
@@ -65,7 +66,7 @@ end
   drbd83-utils e2fsprogs euca2ools file gawk httpd iptables iscsi-initiator-utils jpackage-utils kvm
   PyGreSQL libcurl libvirt libvirt-devel libxml2-devel libxslt-devel lvm2 m2crypto
   openssl-devel parted patch perl-Crypt-OpenSSL-RSA perl-Crypt-OpenSSL-Random
-  postgresql92 postgresql92-server python-boto python-devel python-setuptools
+  postgresql92 postgresql92-server pv python-boto python-devel python-setuptools
   rampartc rampartc-devel rsync scsi-target-utils sudo swig util-linux vconfig
   velocity vtun wget which xalan-j2-xsltc ipset ebtables librbd1 librados2}.each do |dependency|
   yum_package dependency do
@@ -123,7 +124,7 @@ end
 
 execute "echo \"export PATH=$PATH:#{home_directory}/usr/sbin/\" >>/root/.bashrc"
 
-execute "export JAVA_HOME='/usr/lib/jvm/java-1.7.0-openjdk.x86_64' && export JAVA='$JAVA_HOME/jre/bin/java' && export EUCALYPTUS='#{home_directory}' && make && make install" do
+execute "export JAVA_HOME='/usr/lib/jvm/java-1.7.0-openjdk.x86_64' && export JAVA='$JAVA_HOME/jre/bin/java' && export EUCALYPTUS='#{home_directory}' && make CLOUD_LIBS_BRANCH=#{cloud_libs_branch} && make install" do
   cwd source_directory
   timeout node["eucalyptus"]["compile-timeout"]
 end
